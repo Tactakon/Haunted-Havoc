@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "phaser": "^3.60.0"
+  },
+  "name": "haunted-havoc",
+  "description": "---\r *Overview* : (Audience, Genre, Theme, Summary)",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "scripts": {
+    "start": "http-server -c-1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
