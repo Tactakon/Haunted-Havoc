@@ -1,36 +1,34 @@
+import { create, PlayerMovement } from './sprites.js';
+import { playerCollidesWithGhost } from './collision.js';
+
 var config = {
     type: Phaser.AUTO,
     width: 1450,
     height: 700,
     canvas: document.getElementById('canvas'),
+    backgroundColor: 0xFFFFFF,
 
     physics: {
         default: 'arcade',
+        debug: true
     },
-    scene: {
-        preload: preload,
-        create: create
-    }
 };
 
 var game = new Phaser.Game(config);
+var cursors;
 
-function preload ()
-{
-    this.load.image('player', 'assets/char.png')
-    this.load.image('floor', 'assets/ground.png');
-}
+game.scene.add('collision', {
+    preload: function preload () {
+        this.load.image('player', 'assets/char.png');
+        this.load.image('ghost', 'assets/ghost.png');
+    },
+    create: function () {
+        create(this);
+        cursors = this.input.keyboard.createCursorKeys();
+    },
+    update: function () {
+        PlayerMovement(this);
+    }
+});
 
-function create ()
-{
-    // Create the floor background
-    var floor = this.add.image(725, 650, 'floor');
-    floor.setDisplaySize(1700, 400);
-    // Create the player sprite
-    var player = this.physics.add.sprite(100, 550, 'player');
-    player.setDisplaySize(100,100);
-    player.setCollideWorldBounds(true); // Prevent the player from going off-screen
-
-    // Set up keyboard input
-    cursors = this.input.keyboard.createCursorKeys();
-}
+game.scene.start('collision');
