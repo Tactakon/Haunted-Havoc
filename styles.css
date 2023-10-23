@@ -12,8 +12,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 #canvas {
     border: 2px solid rgb(246, 129, 12); /* Add a border for visualization */
+}
+
+.image {
+    position: absolute;
+    left: 0%;
+    top: 0%;
 }
